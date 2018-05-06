@@ -1,12 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
-import { configureStore } from 'graphlabs.core.template/build/redux/store';
 import { Provider } from 'react-redux';
+import { store } from 'graphlabs.core.template';
+import App from './App';
 
-const store = configureStore();
 ReactDOM.render(
   <Provider store={store}>
     <App />
