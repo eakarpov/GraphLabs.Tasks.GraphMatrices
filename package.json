@@ -3,12 +3,10 @@
   "version": "0.1.1",
   "private": true,
   "dependencies": {
-    "graphlabs.core.template": "^0.1.18",
+    "graphlabs.core.template": "^0.1.27",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
-    "react-redux": "^5.0.7",
-    "react-scripts-ts": "2.14.0",
-    "redux": "^3.7.2"
+    "react-scripts-ts": "2.14.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",

@@ -1,12 +1,55 @@
 import './App.css';
 import * as React from 'react';
-import { store, TaskTemplate } from 'graphlabs.core.template';
+import { store, TaskTemplate, TaskToolbar, ToolButtonList } from 'graphlabs.core.template';
 import { Matrix } from './Matrix';
+import { IEdgeView, IVertexView } from 'graphlabs.core.template/build/models/graph';
 
 class App extends TaskTemplate {
+
+  values: number[][];
+
+  constructor(props: {}) {
+    super(props);
+    this.calculate = this.calculate.bind(this);
+    this.handler = this.handler.bind(this);
+  }
+
   handler(values: number[][]) {
-      // tslint:disable-next-line no-console
-      console.log(values);
+    this.values = values;
+  }
+
+  calculate() {
+    const graph = store.getState().graph;
+    let res = 0;
+    graph.vertices.forEach((v: IVertexView, index) => {
+       graph.vertices.forEach((w: IVertexView, jndex) => {
+          const e = graph.edges.find((edge: IEdgeView) =>
+              edge.vertexTwo === v.name && edge.vertexOne === w.name
+                || edge.vertexOne === v.name && edge.vertexTwo === w.name);
+          if (index !== jndex && (this.values[index][jndex] === 0 && e !== void 0
+            || this.values[index][jndex] !== 0 && e === void 0)) {
+              res++;
+          } else if (index === jndex && this.values[index][jndex] !== 1) {
+              res++;
+          }
+       });
+    });
+    // tslint:disable-next-line
+    console.log(res);
+    return { success: res === 0, fee: res };
+  }
+
+  getTaskToolbar() {
+      TaskToolbar.prototype.getButtonList = () => {
+          function beforeComplete(this: App):  Promise<{ success: boolean; fee: number }> {
+              return new Promise((resolve => {
+                  resolve(this.calculate());
+              }));
+          }
+          ToolButtonList.prototype.beforeComplete = beforeComplete.bind(this);
+          return ToolButtonList;
+      };
+      return TaskToolbar;
   }
   task() {
       const graph = store.getState().graph;

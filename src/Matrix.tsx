@@ -13,10 +13,16 @@ export class Matrix extends Component<Props> {
   values: number[][] = new Array(this.props.rows)
       .fill(new Array(this.props.columns).fill(0));
 
-  get(elem: number, column: number, row: number) {
+  constructor(props: Props) {
+      super(props);
+      this.props.handler(this.values);
+  }
+
+  get(elem: number, column: number, row: number): void {
       const res = [...this.values[row]];
       res[column] = elem;
       this.values[row] = res;
+      this.props.handler(this.values);
   }
 
   render(): ReactNode {
@@ -30,7 +36,6 @@ export class Matrix extends Component<Props> {
               </div>);
         })}
         </div>
-        <button onClick={() => this.props.handler(this.values)}>Click me</button>
       </div>);
   }
 }
