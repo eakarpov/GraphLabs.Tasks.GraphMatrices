@@ -21,8 +21,8 @@ class App extends TaskTemplate {
   calculate() {
     const graph = store.getState().graph;
     let res = 0;
-    graph.vertices.forEach((v: IVertexView, index) => {
-       graph.vertices.forEach((w: IVertexView, jndex) => {
+    graph.vertices.forEach((v: IVertexView, index: number) => {
+       graph.vertices.forEach((w: IVertexView, jndex: number) => {
           const e = graph.edges.find((edge: IEdgeView) =>
               edge.vertexTwo === v.name && edge.vertexOne === w.name
                 || edge.vertexOne === v.name && edge.vertexTwo === w.name);
