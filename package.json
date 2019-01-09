@@ -1,6 +1,6 @@
 {
   "name": "graphlabs-tasks-graphmatrices",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "dependencies": {
     "graphlabs.core.template": "^0.1.40",
