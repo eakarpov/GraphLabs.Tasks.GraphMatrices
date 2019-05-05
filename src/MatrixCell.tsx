@@ -6,16 +6,26 @@ export interface State {
 }
 
 export interface Props {
-  get: (e: number) => void;
+    value: number;
+    index: number;
+    get: (e: number) => void;
 }
 
 export class MatrixCell extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    this.state = {
-      value: 0,
-    };
+    console.log('KEY:', this.props.index, 'VL:', this.props.value);
+    if (this.props.value === 0) {
+        this.state = {
+            value: this.props.index,
+        };
+    } else {
+        this.state = {
+            value: 0,
+        };
+    }
+
     this.handler = this.handler.bind(this);
   }
 
@@ -29,9 +39,17 @@ export class MatrixCell extends Component<Props, State> {
         });
   }
   render(): ReactNode {
-    return (
-        <div style={{ border: '1px double black', background: 'white', padding: '5px' }} onClick={this.handler}>
-          {this.state.value}
-        </div>);
+      if (this.props.value === 0) {
+          return (
+              <div style={{ border: '1px double black', background: 'white', padding: '6px' }}>
+                  {this.state.value}
+              </div>);
+      } else {
+          return (
+              <div style={{ border: '1px double black', background: 'white', padding: '6px' }} onClick={this.handler}>
+                  {this.state.value}
+              </div>);
+      }
+
   }
 }
