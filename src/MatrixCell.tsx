@@ -6,16 +6,27 @@ export interface State {
 }
 
 export interface Props {
-  get: (e: number) => void;
+    value: number;
+    index: number;
+    get: (e: number) => void;
+    edges: string;
 }
 
 export class MatrixCell extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    this.state = {
-      value: 0,
-    };
+    console.log('KEY:', this.props.index, 'VL:', this.props.value);
+    if (this.props.value === 0) {
+        this.state = {
+            value: this.props.index,
+        };
+    } else {
+        this.state = {
+            value: 0,
+        };
+    }
+
     this.handler = this.handler.bind(this);
   }
 
@@ -29,9 +40,37 @@ export class MatrixCell extends Component<Props, State> {
         });
   }
   render(): ReactNode {
-    return (
-        <div style={{ border: '1px double black', background: 'white', padding: '5px' }} onClick={this.handler}>
-          {this.state.value}
-        </div>);
+      if (this.props.value === -2) {
+          return (
+              <div style={{ border: '0px double black', textAlign: 'center', width: '40px', minHeight: '10px', background: 'white', padding: '6px' }}>
+                  {this.props.edges}
+              </div>);
+      }
+      if (this.props.value === -3) {
+          return (
+              <div style={{ border: '0px double black', textAlign: 'center', width: '40px', minHeight: '10px', background: '', padding: '6px' }}>
+                  {'  '}
+              </div>);
+      }
+      if (this.props.value === 0) {
+          if (this.state.value === -1) {
+              return (
+                  <div style={{ border: '0px', textAlign: 'center', width: '40px', minHeight: '10px', background: '', padding: '6px' }}>
+                      {'  '}
+                  </div>);
+          } else {
+              return (
+                  <div style={{ border: '0px double black', textAlign: 'center', width: '40px', minHeight: '10px', background: 'white', padding: '6px' }}>
+                      {this.state.value}
+                  </div>);
+          }
+
+      } else {
+          return (
+              <div style={{ border: '1px double black', textAlign: 'center', width: '40px', minHeight: '10px', background: 'white', padding: '6px' }} onClick={this.handler}>
+                  {this.state.value}
+              </div>);
+      }
+
   }
 }
