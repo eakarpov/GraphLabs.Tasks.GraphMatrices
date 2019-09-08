@@ -9,6 +9,7 @@ export interface Props {
     value: number;
     index: number;
     get: (e: number) => void;
+    edges: string;
 }
 
 export class MatrixCell extends Component<Props, State> {
@@ -39,14 +40,34 @@ export class MatrixCell extends Component<Props, State> {
         });
   }
   render(): ReactNode {
-      if (this.props.value === 0) {
+      if (this.props.value === -2) {
           return (
-              <div style={{ border: '1px double black', background: 'white', padding: '6px' }}>
-                  {this.state.value}
+              <div style={{ border: '0px double black', textAlign: 'center', width: '40px', minHeight: '10px', background: 'white', padding: '6px' }}>
+                  {this.props.edges}
               </div>);
+      }
+      if (this.props.value === -3) {
+          return (
+              <div style={{ border: '0px double black', textAlign: 'center', width: '40px', minHeight: '10px', background: '', padding: '6px' }}>
+                  {'  '}
+              </div>);
+      }
+      if (this.props.value === 0) {
+          if (this.state.value === -1) {
+              return (
+                  <div style={{ border: '0px', textAlign: 'center', width: '40px', minHeight: '10px', background: '', padding: '6px' }}>
+                      {'  '}
+                  </div>);
+          } else {
+              return (
+                  <div style={{ border: '0px double black', textAlign: 'center', width: '40px', minHeight: '10px', background: 'white', padding: '6px' }}>
+                      {this.state.value}
+                  </div>);
+          }
+
       } else {
           return (
-              <div style={{ border: '1px double black', background: 'white', padding: '6px' }} onClick={this.handler}>
+              <div style={{ border: '1px double black', textAlign: 'center', width: '40px', minHeight: '10px', background: 'white', padding: '6px' }} onClick={this.handler}>
                   {this.state.value}
               </div>);
       }

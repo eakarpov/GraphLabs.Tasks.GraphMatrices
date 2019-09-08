@@ -36,8 +36,12 @@ export class Matrix extends Component<Props> {
                         count++;
                         return (
                             <div className="container" key={i}>
-                                <MatrixRow keys={count} length={this.props.columns} edge={this.props.edges}
-                                           get={(el, c) => this.get(el, c, i)}>{this.props.children}</MatrixRow>
+                                <MatrixRow
+                                    keys={count}
+                                    length={this.props.columns}
+                                    get={(el, c) => this.get(el, c, i)}
+                                    edges={this.props.edges}
+                                />
                             </div>);
                     })}
                 </div>
