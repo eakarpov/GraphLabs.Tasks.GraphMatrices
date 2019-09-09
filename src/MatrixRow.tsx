@@ -20,10 +20,10 @@ export class MatrixRow extends Component<Props> {
     // console.log('VEC: ', this.props.edge);
     let flag = -1;
     if (this.props.keys === -1) {
-      console.log('FLG');
+      // console.log('FLG');
       return new Array(this.props.length).fill(0).map((e, i) => {
         flag++;
-        console.log('FLAG: ', flag);
+        // console.log('FLAG: ', flag);
         if (flag === 0) {
           return (
               <div key={i} style={{ float: 'left', padding: '2px', cursor: 'pointer' }}>
@@ -35,12 +35,12 @@ export class MatrixRow extends Component<Props> {
                 />
               </div>);
         } else {
-          console.log('Edges: ', this.props.edges[flag - 1]);
+          // console.log('Edges: ', this.props.edges[flag - 1]);
           let a = '';
           a += this.props.edges[flag - 1][0];
           a += ',';
           a += this.props.edges[flag - 1][1];
-          console.log('Edges string: ', a);
+          // console.log('Edges string: ', a);
           return (
               <div key={i} style={{ float: 'left', padding: '2px', cursor: 'pointer' }}>
                 <MatrixCell
@@ -61,7 +61,7 @@ export class MatrixRow extends Component<Props> {
       if (flag === -1) {
         flag++;
       }
-      console.log('KEYS:', this.props.keys, 'Ln:', this.props.length);
+      // console.log('KEYS:', this.props.keys, 'Ln:', this.props.length);
       return (
           <div key={i} style={{ float: 'left', padding: '2px', cursor: 'pointer' }}>
             <MatrixCell
