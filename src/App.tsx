@@ -43,13 +43,13 @@ class App extends TaskTemplate {
           }
       }
 
-      console.log(res);
+      // console.log(res);
       return { success: res === 0, fee: res };
   }
 
   make_vec() {
       const graph = store.getState().graph;
-      console.log('Vert: ', graph.vertices.length);
+      // console.log('Vert: ', graph.vertices.length);
 
       for (let i = 0; i < graph.vertices.length; i++) {
           for (let j = i; j < graph.vertices.length; j++) {
@@ -63,7 +63,7 @@ class App extends TaskTemplate {
               }
           }
       }
-      console.log('Empty: ', this.myTuple);
+      // console.log('Empty: ', this.myTuple);
   }
 
   getTaskToolbar() {

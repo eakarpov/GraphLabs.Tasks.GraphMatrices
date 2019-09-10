@@ -16,7 +16,7 @@ export class MatrixCell extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    console.log('KEY:', this.props.index, 'VL:', this.props.value);
+    // console.log('KEY:', this.props.index, 'VL:', this.props.value);
     if (this.props.value === 0) {
         this.state = {
             value: this.props.index,
