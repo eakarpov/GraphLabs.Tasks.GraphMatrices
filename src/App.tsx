@@ -1,10 +1,9 @@
 import './App.css';
 import * as React from 'react';
-import { store, TaskTemplate, TaskToolbar, ToolButtonList } from 'graphlabs.core.template';
+import { IEdgeView, store, Template, Toolbar, ToolButtonList } from 'graphlabs.core.template';
 import { Matrix } from './Matrix';
-import { IEdgeView } from 'graphlabs.core.template/build/models/graph';
 
-class App extends TaskTemplate {
+class App extends Template {
 
   values: number[][];
   myTuple: [number, number][] = [];
@@ -67,7 +66,7 @@ class App extends TaskTemplate {
   }
 
   getTaskToolbar() {
-      TaskToolbar.prototype.getButtonList = () => {
+      Toolbar.prototype.getButtonList = () => {
           function beforeComplete(this: App):  Promise<{ success: boolean; fee: number }> {
               return new Promise((resolve => {
                   resolve(this.calculate());
@@ -79,7 +78,7 @@ class App extends TaskTemplate {
 После заполнения матрицы нажмите галочку для проверки задания.`;
           return ToolButtonList;
       };
-      return TaskToolbar;
+      return Toolbar;
   }
   task() {
       const graph = store.getState().graph;
